@@ -23,7 +23,7 @@ function App() {
 		e.preventDefault();
 		if(search === '') return;
 
-		const endpoint = `http://www.omdbapi.com/?apikey=4960b75e&s=${search}&type=${type}&r=json&plot=short&page=1`
+		const endpoint = `https://www.omdbapi.com/?apikey=4960b75e&s=${search}&type=${type}&r=json&plot=short&page=1`
 
 		const response = await fetch(endpoint);
 		
