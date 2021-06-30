@@ -1,13 +1,82 @@
-body {
+*{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: 'Fira Sans', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+h1{
+  color: #888;
+  font-size: 42px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.search-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 480px;
+  margin-bottom: 16px;
+  transition: 0.4s;
+}
+
+.search-box input{
+  display: block;
+  appearance: none;
+  outline: none;
+  border: none;
+  padding: 16px;
+  width: 100%;
+  transition: 0.4s;
+}
+
+.search-box:focus-within{
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+body{
+  background-color: #eee;
+}
+
+.results{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+.result{
+  flex: 20%;
+  padding: 0 4px;
+}
+
+.result img{
+  margin: 8px;
+  vertical-align: middle;
+}
+
+.result h3{
+  margin-left: 45px;
+}
+
+.radioGroup{
+  margin: 10px 10px;
+}
+
+.radioGroup label{
+  margin: 10px 10px;
+  display: inline-block;
 }
