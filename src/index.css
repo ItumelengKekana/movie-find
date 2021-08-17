@@ -72,6 +72,20 @@ body{
   margin-left: 45px;
 }
 
+.result a{
+  margin-left: 45px;
+  color: rgb(10, 6, 6);
+  text-decoration: none;
+  transition: 0.4s;
+  padding: 5px;
+}
+
+.result img{
+  width: 300px;
+  height: 420px;
+  border-radius: 6px;
+}
+
 .radioGroup{
   margin: 10px 10px;
 }
@@ -79,4 +93,28 @@ body{
 .radioGroup label{
   margin: 10px 10px;
   display: inline-block;
+}
+
+.pages{
+  justify-content: center;
+  padding-top: 10px;
+  align-items: center;
+  display: flex;
+}
+
+.pages a{
+  padding-right: 10px;
+  color: rgb(10, 6, 6);
+  text-decoration: none;
+  padding: 10px 10px;
+  border-radius: 6px;
+}
+
+.pages a:hover{
+  background-color: black;
+  color: rgb(112, 8, 112);
+}
+
+.result a:hover{
+  color: rgb(112, 8, 112);
 }

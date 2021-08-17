@@ -2,12 +2,18 @@ import {useState} from 'react';
 
 
 function App() {
+	//set variables to save search results
 	const [search, setSearch] = useState('');
 	const [results, setResults] = useState([]);
 	const [total, setTotal] = useState('');
 
 	let type = '';
+	let page = 1; //set default page to 1
 
+	//configure API endpoint
+	const url = `https://www.omdbapi.com/?apikey=4960b75e&s=${search}&type=${type}&r=json&plot=short&${page}`
+
+	//user can filter results based on preferance (movie or series)
 	const selectType = () =>{
 		const mov = document.querySelector('#movie');
 		const ser = document.querySelector('#series');
@@ -19,11 +25,12 @@ function App() {
 		}
 	}
 
+	// declare the search function
 	const handleSearch = async e =>{
 		e.preventDefault();
 		if(search === '') return;
 
-		const endpoint = `https://www.omdbapi.com/?apikey=4960b75e&s=${search}&type=${type}&r=json&plot=short&page=1`
+		const endpoint = `https://www.omdbapi.com/?apikey=4960b75e&s=${search}&type=${type}&r=json&plot=short&${page}`
 
 		const response = await fetch(endpoint);
 		
@@ -31,6 +38,7 @@ function App() {
 			throw Error(response.statusText)
 		}
 		const json = await response.json();
+
 		console.log(json);
 
 		setResults(json.Search);
@@ -74,15 +82,24 @@ function App() {
 			</header>
 			<div className="results">
 				{results.map((result, i) =>{
+					// setting the url for the imdb page of a certain movie or series
+					const id = `https://www.imdb.com/title/${result.imdbID}/?ref_=tt_sims_tt_i_1`;
+
 					return(
 						<div className="result" key={i}>
-							<h3>{result.Title}</h3>
+							<a href={id} target="_blank">{result.Title}</a>
 							<img src={result.Poster} alt="" />
 						</div>
 					)
 				})}
-
+			
+			{/* //TODO: add function to change pages */}
 			</div>
+			{(total) ? <div className="pages">
+							<a href=''>Prev</a>
+							<a href=''>Next</a>
+						</div> : ''}
+			
 		</div>
 	);
 }
