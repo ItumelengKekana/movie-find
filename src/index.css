@@ -48,6 +48,22 @@ h1{
   transform: translateY(-5px);
 }
 
+#search-btn{
+  border: none;
+  outline: none;
+  padding: 16px;
+  background-color: rgb(112, 8, 112);
+  color: #fff;
+  border-radius: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+#search-btn:after{
+  transform: translateY(+5px);
+}
+
 body{
   background-color: #eee;
 }
@@ -102,19 +118,69 @@ body{
   display: flex;
 }
 
-.pages a{
+.pages .btn-page{
   padding-right: 10px;
   color: rgb(10, 6, 6);
-  text-decoration: none;
+  border: none;
   padding: 10px 10px;
   border-radius: 6px;
+  cursor: pointer;
 }
 
-.pages a:hover{
+.pages .btn-page:hover{
   background-color: black;
   color: rgb(112, 8, 112);
 }
 
 .result a:hover{
   color: rgb(112, 8, 112);
+}
+
+.container{
+  display: flex;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 10px;
+}
+
+
+.page{
+  padding: 10px;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+
+.disabled{
+  cursor: not-allowed;
+}
+
+
+.active{
+  border: 2px solid #000;
+  font-weight: bold;
+}
+
+
+.previous{
+  padding: 10px;
+  border-radius: 6px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+
+.break{
+  padding: 10px;
+}
+
+
+.next{
+  padding: 10px;
+  border-radius: 6px;
+  margin-right: 10px;
+  cursor: pointer;
 }

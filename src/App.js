@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import ReactPaginate from 'react-paginate';
 
 
 function App() {
@@ -6,12 +7,9 @@ function App() {
 	const [search, setSearch] = useState('');
 	const [results, setResults] = useState([]);
 	const [total, setTotal] = useState('');
+	const [currentPage, setCurrentPage] = useState(1);
 
 	let type = '';
-	let page = 1; //set default page to 1
-
-	//configure API endpoint
-	const url = `https://www.omdbapi.com/?apikey=4960b75e&s=${search}&type=${type}&r=json&plot=short&${page}`
 
 	//user can filter results based on preferance (movie or series)
 	const selectType = () =>{
@@ -26,11 +24,11 @@ function App() {
 	}
 
 	// declare the search function
-	const handleSearch = async e =>{
-		e.preventDefault();
+	const handleSearch = async () =>{
+		//e.preventDefault();
 		if(search === '') return;
 
-		const endpoint = `https://www.omdbapi.com/?apikey=4960b75e&s=${search}&type=${type}&r=json&plot=short&${page}`
+		const endpoint = `https://www.omdbapi.com/?apikey=4960b75e&s=${search}&type=${type}&r=json&plot=short&page=${currentPage}`
 
 		const response = await fetch(endpoint);
 		
@@ -46,20 +44,26 @@ function App() {
 
 	}
 	
+	//handle pagination
+	const handlePageChange = (e) =>{
+		setCurrentPage(e.selected);
+		handleSearch();
+	}
 
 
 	return (
 		<div className="App">
 			<header>
 				<h1>Movie .find</h1>
-				<form className='search-box' onSubmit={handleSearch}>
+				<div className='search-box'>
 					<input 
 					type="search" 
 					placeholder='Enter movie or series name'
 					value={search}
 					onChange={e => setSearch(e.target.value)}
 					/>
-				</form>
+				</div>
+				<button id='search-btn' onClick={handleSearch}>Search</button>
 				{(total) ? <p>Total results: {total}</p> : ''}
 				<form className='radioGroup'>
 					<input 
@@ -92,14 +96,21 @@ function App() {
 						</div>
 					)
 				})}
-			
-			{/* //TODO: add function to change pages */}
 			</div>
-			{(total) ? <div className="pages">
-							<a href=''>Prev</a>
-							<a href=''>Next</a>
-						</div> : ''}
 			
+			{total ? (<ReactPaginate
+				pageCount={total/10}
+				pageRange={2}
+				marginPagesDisplayed={3}
+				onPageChange={handlePageChange}
+				containerClassName={'container'}
+				previousLinkClassName={'page'}
+				breakClassName={'page'}
+				nextLinkClassName={'page'}
+				pageClassName={'page'}
+				disabledClassName={'disabled'}
+				activeClassName={'active'}
+				/>) : ''}			
 		</div>
 	);
 }
