@@ -127,6 +127,10 @@ body{
   cursor: pointer;
 }
 
+span{
+  color: rgb(112, 8, 112);
+}
+
 .pages .btn-page:hover{
   background-color: black;
   color: rgb(112, 8, 112);

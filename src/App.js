@@ -54,7 +54,7 @@ function App() {
 	return (
 		<div className="App">
 			<header>
-				<h1>Movie .find</h1>
+				<h1>Movie <span>.find</span></h1>
 				<div className='search-box'>
 					<input 
 					type="search" 
@@ -99,7 +99,7 @@ function App() {
 			</div>
 			
 			{total ? (<ReactPaginate
-				pageCount={total/10}
+				pageCount={5}
 				pageRange={2}
 				marginPagesDisplayed={3}
 				onPageChange={handlePageChange}
